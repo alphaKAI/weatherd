@@ -1,11 +1,11 @@
 /***
   Weather Notify
-    The weather notification application with Livedoor Weather Web Service, which written in the D programming language.
+  The weather notification application with Livedoor Weather Web Service, which written in the D programming language.
 
-  Licence: The Mit Licenst
-  Author: alphaKAI (Twitter:@alpha_kai_NET)
-  Copyright (C) alphaKAI 2014 http://alpha-kai-net.info
-  */
+Licence: The Mit Licenst
+Author: alphaKAI (Twitter:@alpha_kai_NET)
+Copyright (C) alphaKAI 2014 http://alpha-kai-net.info
+ */
 import std.algorithm,
        std.net.curl,
        std.process,
@@ -31,26 +31,24 @@ class WeatherD{
   string settingJson;
 
   this(){
-    (){//Build Place List
-      if(!exists(defineFilePath))
-        if(!rt.saveRSS(rssUrl, [getcwd, "resource"].join("/")))
-            throw new Error("Failed to save RSS as XML");
-      string xml = cast(string)std.file.read(defineFilePath);
-      std.xml.check(xml);
-      auto doc = new DocumentParser(xml);
+    if(!exists(defineFilePath))
+      if(!rt.saveRSS(rssUrl, [getcwd, "resource"].join("/")))
+        throw new Error("Failed to save RSS as XML");
+    string xml = cast(string)std.file.read(defineFilePath);
+    std.xml.check(xml);
+    auto doc = new DocumentParser(xml);
 
-      doc.onStartTag["pref"] = (ElementParser xml){
-        string currentPref = xml.tag.attr["title"];
-        xml.onStartTag["city"] = (ElementParser xml){
-          string city = cast(string)xml.tag.attr["title"];
-          string id   = cast(string)xml.tag.attr["id"];
-          prefs[currentPref][city] = id;
-        };
-
-        xml.parse();
+    doc.onStartTag["pref"] = (ElementParser xml){
+      string currentPref = xml.tag.attr["title"];
+      xml.onStartTag["city"] = (ElementParser xml){
+        string city = cast(string)xml.tag.attr["title"];
+        string id   = cast(string)xml.tag.attr["id"];
+        prefs[currentPref][city] = id;
       };
-      doc.parse();
-    }();
+
+      xml.parse();
+    };
+    doc.parse();
 
     settingJson = readSettingFile;
   }
