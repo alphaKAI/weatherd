@@ -1,6 +1,6 @@
 {
   "name": "weatherd",
-  "description": "A minimal D application.",
+  "description": "WeatherHack API Wrapper for D Language",
   "copyright": "Copyright © 2015, alphakai",
   "authors": ["alphakai"],
   "license": "MIT",
