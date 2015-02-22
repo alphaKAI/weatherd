@@ -1,8 +1,8 @@
-import weatherNotify;
+import weatherd;
+import std.stdio;
 
 void main(){
-    weatherNotify wn = new weatherNotify;
+    WeatherD weather = new WeatherD;
 
-    wn.sendNotify("福井県", "福井");
-    wn.sendNotify("東京都", "東京");
+    weather.getWeatherData("東京都", "東京").writeln;
 }

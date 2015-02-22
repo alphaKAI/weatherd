@@ -21,7 +21,7 @@ import std.algorithm,
 import rssTools,
        jsonTools;
 
-class Weather{
+class WeatherD{
   RSSTools  rt = new RSSTools;
   jsonTools jt = new jsonTools;
   string defineFilePath = "./resource/primary_area.xml"; 
@@ -67,6 +67,11 @@ class Weather{
 
     return returnString;
   }
+
+  JSONValue getWeatherData(string pref, string city){
+    return parseJSON(get(baseUrl ~ prefs[pref][city]));
+  }
+
   private{
     string readSettingFile(){
       auto file = File(defineFilePath, "r");
