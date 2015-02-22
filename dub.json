@@ -1,0 +1,12 @@
+{
+  "name": "weatherd",
+  "description": "A minimal D application.",
+  "copyright": "Copyright © 2015, alphakai",
+  "authors": ["alphakai"],
+  "license": "MIT",
+  "libs": ["curl"],
+  "dependencies": {
+  },
+  "excludedSourceFiles": ["source/test.d"]
+}
+
